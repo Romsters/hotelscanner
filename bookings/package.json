@@ -1,0 +1,33 @@
+{
+  "name": "hotelscanner-bookings",
+  "version": "1.0.0",
+  "description": "hotelscanner bookings microservice",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Romsters/hotelscanner.git"
+  },
+  "keywords": [
+    "hotelscanner",
+    "bookings"
+  ],
+  "author": "petriv.roma@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Romsters/hotelscanner/issues"
+  },
+  "homepage": "https://github.com/Romsters/hotelscanner#readme",
+  "dependencies": {
+    "@hotelscanner/lib": "^1.0.10",
+    "body-parser": "^1.18.3",
+    "boom": "^7.3.0",
+    "compression": "^1.7.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "r2": "^2.0.1"
+  }
+}

@@ -1,0 +1,68 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: auth
+  name: auth
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: auth
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        run: auth
+    spec:
+      containers:
+      - image: auth:v1
+        imagePullPolicy: IfNotPresent
+        name: auth
+        ports:
+        - containerPort: 8080
+        env:
+        - name: PORT
+          value: "8080"
+        - name: JWT_PRIVATE_KEY
+          value: {{JWT_PRIVATE_KEY}}
+        - name: JWT_PUBLIC_KEY
+          value: {{JWT_PUBLIC_KEY}}
+        - name: DBNAME
+          value: "hotelscanner-users"
+        - name: DBHOST
+          value: {{DBHOST}}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: auth
+  name: auth
+  namespace: default
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind:  Mapping
+      name:  fws-auth_mapping
+      prefix: /auth
+      rewrite: /auth
+      service: auth
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    run: auth
+  sessionAffinity: None
+  type: ClusterIP

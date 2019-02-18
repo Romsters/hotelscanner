@@ -1,0 +1,27 @@
+{
+  "name": "@hotelscanner/lib",
+  "version": "1.0.10",
+  "description": "common code for hotelscanner",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Romsters/hotelscanner.git"
+  },
+  "keywords": [
+    "lib",
+    "hotelscanner"
+  ],
+  "author": "petriv.roma@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Romsters/hotelscanner/issues"
+  },
+  "homepage": "https://github.com/Romsters/hotelscanner#readme",
+  "dependencies": {
+    "jsonwebtoken": "^8.4.0",
+    "mongodb": "^3.1.13"
+  }
+}

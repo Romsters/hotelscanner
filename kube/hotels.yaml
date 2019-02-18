@@ -1,0 +1,66 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: hotels
+  name: hotels
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: hotels
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        run: hotels
+    spec:
+      containers:
+      - image: hotels:v1
+        imagePullPolicy: IfNotPresent
+        name: hotels
+        ports:
+        - containerPort: 8080
+        env:
+        - name: PORT
+          value: "8080"
+        - name: JWT_PUBLIC_KEY
+          value: {{JWT_PUBLIC_KEY}} 
+        - name: DBNAME
+          value: "hotelscanner-hotels"
+        - name: DBHOST
+          value: {{DBHOST}}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: hotels
+  name: hotels
+  namespace: default
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind:  Mapping
+      name:  fws-hotels_mapping
+      prefix: /hotels
+      rewrite: /hotels
+      service: hotels
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    run: hotels
+  sessionAffinity: None
+  type: ClusterIP
