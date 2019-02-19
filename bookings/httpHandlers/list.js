@@ -11,8 +11,10 @@ async function list(req, res) {
   }
   const cursor = await mongoClient.db.collection('bookings').find({ userId: req.user.sub }, options);
   const collection = await cursor.toArray();
+  const hasMore = collection.length > PAGE_SIZE;
+  collection.splice(PAGE_SIZE);
   const data = {
-    hasMore: collection.length > PAGE_SIZE,
+    hasMore,
     collection
   }
   res.json({

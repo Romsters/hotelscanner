@@ -5,7 +5,7 @@ const PAGE_SIZE = process.env.QUERY_PAGE_SIZE || 10;
 
 async function search(req, res) {
   const query = {};
-  const options = { limit: PAGE_SIZE + 1, sort: { name: 1 } };
+  const options = { limit: PAGE_SIZE + 1, sort: { title: 1 } };
   if (req.query.priceRange) {
     const [gte, lte] = req.query.priceRange.split('-').map(e => parseInt(e));
     query.price = {};
@@ -16,8 +16,8 @@ async function search(req, res) {
       query.price.$lte = lte;
     }
   }
-  if (req.query.name) {
-    query.name = req.query.name;
+  if (req.query.title) {
+    query.title = req.query.title;
   }
   const page = parseInt(req.query.page);
   if (!Number.isNaN(page) && page > 1) {
@@ -28,8 +28,10 @@ async function search(req, res) {
   }
   const cursor = await mongoClient.db.collection('hotels').find(query, options);
   const collection = await cursor.toArray();
+  const hasMore = collection.length > PAGE_SIZE;
+  collection.splice(PAGE_SIZE);
   const data = {
-    hasMore: collection.length > PAGE_SIZE,
+    hasMore,
     collection
   }
   res.json({
