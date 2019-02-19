@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Hotels from '../pages/hotels';
+import Hotels from '../pages/Hotels';
 import * as actions from '../store/app/actions';
 import { isAppLoading, isAppLoadingFailed } from '../store/app/selectors';
 
