@@ -31,8 +31,8 @@ const port = process.env.PORT || 3002;
 mongoClient
   .connect()
   .then(() => Promise.all([
-    mongoClient.db.collection('hotels').createIndex({ name: 1, price: 1 }),
-    mongoClient.db.collection('hotels').createIndex({ price: 1, name: 1 })
+    mongoClient.db.collection('hotels').createIndex({ title: 1, price: 1 }),
+    mongoClient.db.collection('hotels').createIndex({ price: 1, title: 1 })
   ]))
   .then(() => app.listen(port, () => {
     console.log(`hotels service listening on ${port}`)
