@@ -1,0 +1,21 @@
+.hotels-page {
+  min-width: 320px;
+  margin: 0 auto;
+  padding: 50px 20px 0 20px;
+
+  & .hotels-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    & .hotels-list-item {
+      margin: 20px 0;
+    }
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .hotels-page {
+    padding: 50px 200px 0 200px;
+  }
+}

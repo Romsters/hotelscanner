@@ -1,0 +1,17 @@
+.filter-form {
+  & .title-filter-input {
+    font-size: 36px;
+  }
+
+  & .filter-panel {
+    display: grid;
+    grid-auto-columns: 1fr 1fr 2fr;
+    grid-gap: 10px;
+    padding-top: 10px;
+
+    & .filter-panel-item {
+      grid-row: 1;
+      font-size: 24px;
+    }
+  }
+}

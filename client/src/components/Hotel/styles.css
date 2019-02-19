@@ -1,0 +1,26 @@
+.hotel-card {
+  display: grid;
+  grid-auto-columns: 1fr 5fr;
+  grid-column-gap: 20px;
+  background: #fff;
+  padding: 20px;
+  align-items: center;
+
+  & .hotel-picture-wrapper,
+  & .hotel-info-wrapper {
+    grid-row: 1;
+  }
+
+  & .hotel-info-wrapper {
+    & .hotel-info {
+      margin: 6px 0;
+    }
+  }
+
+  & .hotel-picture-wrapper {
+    & img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+}

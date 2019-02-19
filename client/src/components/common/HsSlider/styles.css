@@ -1,0 +1,28 @@
+.hs-slider {
+  margin: 5px;
+  width: auto;
+}
+
+.hs-slider-values {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 18px;
+  margin: 3px 0 0;
+}
+
+.rc-slider-tooltip-placement-top {
+  & .rc-slider-tooltip-arrow {
+    border-top-color: rgba(0, 0, 0, 0.75);
+  }
+}
+
+.rc-slider-tooltip-inner {
+  background-color: rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  font-size: 11px;
+  padding: 6px 5px;
+  margin-bottom: 0;
+}
