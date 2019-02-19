@@ -3,9 +3,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroller';
-import { search, apply } from '../store/app/actions';
-import Hotel from '../components/Hotel';
-import Filter from '../components/Filter';
+import { search, apply } from '../../store/app/actions';
+import Hotel from '../../components/Hotel';
+import Filter from '../../components/Filter';
 
 import './styles.css';
 
